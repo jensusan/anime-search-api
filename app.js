@@ -1,10 +1,15 @@
+// cached vaiables
 const $input = $('#input-field');
 const $main = $('main');
+const $imageDiv = $('#image-div')
+const $textDiv = $('#text-div')
 const $button = $('#button');
-const quoteBtn = $('#quote-button');
-const $div = $('div');
+const $quoteDiv = $('#quote-div');
+const $quoteBtn = $('<input id="quote-button" type="submit" value="Get A Quote">');
 
 
+
+//get api data
 function handleGetData(event) {
 event.preventDefault();
 userInput = $input.val();
@@ -13,7 +18,6 @@ $.ajax({
     url: 'https://api.jikan.moe/v3/search/anime?q=' + userInput
 }).then(
 (data) => {
-    console.log(data.results[0])
 displayInfo(data.results[0]);
 }, (error) => {
     console.log('Something went wrong');
@@ -21,59 +25,75 @@ displayInfo(data.results[0]);
 )
 }
 
-
+//dynamically display data
 function displayInfo(data) {
-    $main.empty();
+    $textDiv.empty();
+    $imageDiv.empty();
+    $quoteDiv.empty();
 
     const $image = $('<img>');
     $image.attr('src',  data.image_url);
     $image.attr('alt', data.title);
-    $main.append($image);
+    $imageDiv.append($image);
     
     const $title = $('<h2>');
-    const $titleLabel = $('<h2>');
+    const $titleLabel = $('<h3>');
     $titleLabel.text('Title');
-    $main.append($titleLabel);
+    $textDiv.append($titleLabel);
     $title.text(data.title)
-    $main.append($title)
+    $textDiv.append($title)
     
     const $description = $('<p>');
     const $descriptionLabel = $('<h3>');
     $descriptionLabel.text('Description');
-    $main.append($descriptionLabel);
+    $textDiv.append($descriptionLabel);
     $description.text(data.synopsis);
-    $main.append($description)
+    const $more = $('<a>');
+    $more.text('more');
+    $more.attr('href', data.url);
+    $more.attr('target', '_blank');
+    $textDiv.append($description)
+    $textDiv.append($more)
+
     
     const $episodes = $('<p>') ;
     const $episodesLabel = $('<h3>');
     $episodesLabel.text('Number of Episodes');
-    $main.append($episodesLabel);
+    $textDiv.append($episodesLabel);
     $episodes.text(data.episodes);
-    $main.append($episodes);
+    $textDiv.append($episodes);
     
     const $rating = $('<p>');
     const $ratingLabel = $('<h3>');
-    $ratingLabel.text('Rating');
-    $main.append($ratingLabel);
+    $ratingLabel.text('Score');
+    $textDiv.append($ratingLabel);
     $rating.text(data.score);
-    $main.append($rating);
+    $textDiv.append($rating);
+
+    $quoteDiv.append($quoteBtn)
+    
 }
 
-//displayInfo()
 
+//event listener main data
 $('#button').on('click', handleGetData) 
 
-$(quoteBtn).on('click', handleGetQuote)
+// event listener quote button
+$($quoteBtn).on('click', handleGetQuote)
 
+//display quote info
 function displayQuote (data) {
-    $div.empty()
+    $quoteDiv.empty();
+    $quoteDiv.append($quoteBtn)
     $character = $('<p>');
-    $character.text(data.character)
+    $character.text('Character: ' + data.character)
+    $quoteDiv.append($character);
     $quote = $('<p>');
-    $quote.text(data.quote);
-    $div.append($quote);
+    $quote.text(`Quote: "${data.quote}"`);
+    $quoteDiv.append($quote);
 }
 
+// get quote data
 function handleGetQuote(event) {
     event.preventDefault();
     userInput = $input.val();
@@ -82,11 +102,12 @@ function handleGetQuote(event) {
         url: 'https://animechan.vercel.app/api/quotes/anime?title=' + userInput
     }).then(
     (data) => {
-        console.log(data)
-        displayQuote(data[0]);
+        let randomIdx = Math.floor(Math.random() * data.length);
+        displayQuote(data[randomIdx]);
     }, (error) => {
         console.log('Something went wrong');
     }
     )
     }
 
+    
