@@ -1,0 +1,27 @@
+body {
+    background: rgb(230, 244, 248);
+    font-family: 'Carter One', cursive;
+    margin: 0px;
+    
+}
+
+header {
+    text-align: center;
+    margin: 0px 0px 50px 0px;
+    padding: 10px 0px 20px 0px;
+    /* font-family: 'Bangers', cursive; */
+    background: rgb(0, 124, 158);
+    
+}
+
+/* li {
+    padding: 10px;
+} */
+
+button {
+   margin: 20px;
+}
+
+main {
+    margin: 20px;
+}

@@ -6,6 +6,8 @@ const $textDiv = $('#text-div')
 const $button = $('#button');
 const $quoteDiv = $('#quote-div');
 const $quoteBtn = $('<input id="quote-button" type="submit" value="Get Random Quotes">');
+const $watchDiv = $('#watch-list');
+const $watchBtn = $('<input id="watch-button" type="submit" value="Add To Watch List">');
 
 
 
@@ -71,7 +73,8 @@ function displayInfo(data) {
     $rating.text(data.score);
     $textDiv.append($rating);
 
-    $quoteDiv.append($quoteBtn)
+    $quoteDiv.append($quoteBtn);
+    $textDiv.append($watchBtn);
 }
 
 
@@ -111,4 +114,44 @@ function handleGetQuote(event) {
     )
     }
 
+
+    function handleGetWatch(event) {
+        event.preventDefault();
+        userInput = $input.val();
+        
+        
+        $.ajax({
+            url: 'https://api.jikan.moe/v3/search/anime?q=' + userInput
+        }).then(
+        (data) => {
+        setList(data.results[0]);
+        }, (error) => {
+            console.log('Something went wrong');
+        }
+        )
+        }
     
+    
+    
+    $(document).on('click', '#watch-button', handleGetWatch);
+
+    function setList(data) {
+    let dataTitle = data.title;
+    //let dataImage = data.mal_id;
+    localStorage.setItem(dataTitle, dataTitle);
+    //localStorage.setItem(dataImage, data.image_url)
+    }
+    
+   
+   
+    // const $showItem = $('<p>');
+    // $showItem.text();
+    // $watchDiv.append($showItem);
+    // const $showImage = $('<img>');
+    // $showImage.attr('src', data.image_url);
+    // $showImage.attr('alt', data.title);
+    // $watchDiv.append($showImage);
+    
+
+    
+ 
