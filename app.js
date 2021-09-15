@@ -5,7 +5,7 @@ const $imageDiv = $('#image-div')
 const $textDiv = $('#text-div')
 const $button = $('#button');
 const $quoteDiv = $('#quote-div');
-const $quoteBtn = $('<input id="quote-button" type="submit" value="Get A Quote">');
+const $quoteBtn = $('<input id="quote-button" type="submit" value="Get Random Quotes">');
 
 
 
@@ -13,6 +13,7 @@ const $quoteBtn = $('<input id="quote-button" type="submit" value="Get A Quote">
 function handleGetData(event) {
 event.preventDefault();
 userInput = $input.val();
+
 
 $.ajax({
     url: 'https://api.jikan.moe/v3/search/anime?q=' + userInput
@@ -71,7 +72,6 @@ function displayInfo(data) {
     $textDiv.append($rating);
 
     $quoteDiv.append($quoteBtn)
-    
 }
 
 
@@ -79,7 +79,7 @@ function displayInfo(data) {
 $('#button').on('click', handleGetData) 
 
 // event listener quote button
-$($quoteBtn).on('click', handleGetQuote)
+$(document).on('click', '#quote-button', handleGetQuote)
 
 //display quote info
 function displayQuote (data) {
@@ -87,10 +87,11 @@ function displayQuote (data) {
     $quoteDiv.append($quoteBtn)
     $character = $('<p>');
     $character.text('Character: ' + data.character)
-    $quoteDiv.append($character);
     $quote = $('<p>');
     $quote.text(`Quote: "${data.quote}"`);
+    $quoteDiv.append($character);
     $quoteDiv.append($quote);
+    
 }
 
 // get quote data
