@@ -1,6 +1,6 @@
-# App Title
+# Anime Search
 
-Description of my app
+A web application that lets you search for animes using an API, read random quotes from the show, and save shows to a watch list and localstorage.
 
 ## Technologies Used
 
@@ -13,6 +13,10 @@ Description of my app
 ## Screenshots
 
 ## Getting Started
+
 [Click Here] to see the deployed app.
 
 ## Future Enhancements
+
+* Top 10 list
+* Search for randomw anime

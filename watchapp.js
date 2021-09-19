@@ -41,7 +41,7 @@ function displayList() {
         $carSlider.empty();
     }
 
-    //remove show from watch list and localStorage when x is clicked
+    //remove show and image from watch list and localStorage when x is clicked
     $('ul').on('click', 'button', removeShow)
     function removeShow(event) {
         $(this).closest('li').remove();
