@@ -16,7 +16,6 @@ button {
    margin: 20px;
 }
 
-
 main {
     margin: 20px;
     display: flex;
@@ -46,6 +45,7 @@ img {
  width: 225px;
  height: 330px;
 }
+
 
 @media screen and (min-width:700px) {
     main {

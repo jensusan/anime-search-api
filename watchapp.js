@@ -1,10 +1,13 @@
 //cached variables
 let $showItem
 const $carContainer = $('#carousel-container');
-const $carSlider = $('#carousel-slider')
+const $carSlider = $('#carousel-slider');
 let currentImg = 1;
 let imgArray = [];
 let inverval 
+const $textDiv = $('#text-list');
+const $imageDiv = $('#image-list');
+
 
 
 // gets shows from localStorage and appends them to a list
@@ -27,6 +30,14 @@ function displayList() {
             console.log('Something went wrong');
         }
         )
+       
+    }   if(localStorage.length > 0) {
+        const $clearBtn = $('<button id="clearBtn">Clear List</button>');
+        $textDiv.append($clearBtn);
+        const $pauseBtn = $('<button id="pause">&#10074 &#10074</button>');
+        const $startBtn = $('<button id="start">&#9658</button>');
+        $imageDiv.append($pauseBtn);
+        $imageDiv.append($startBtn);
     }
 }
 
@@ -39,6 +50,8 @@ function displayList() {
         localStorage.clear();
         $('ul').empty();
         $carSlider.empty();
+        $textDiv.empty();
+        $imageDiv.empty();
     }
 
     //remove show and image from watch list and localStorage when x is clicked
@@ -57,6 +70,7 @@ function displayList() {
         $imgList.attr('id', data.title)
         $carSlider.append($imgList)
         imgArray.push($imgList)
+       
     }  
    
     //animate image carousel
