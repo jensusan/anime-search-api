@@ -12,9 +12,13 @@ A web application that lets you search for animes using an API, read random quot
 
 ## Screenshots
 
+![home screen](https://i.imgur.com/ALQERdU.png)
+![search screen](https://i.imgur.com/K41EAYT.png)
+![watch list screen](https://i.imgur.com/FpWoO3U.png)
+
 ## Getting Started
 
-[Click Here] to see the deployed app.
+[Click Here](https://anime-search-api.vercel.app/) to see the deployed app.
 
 ## Future Enhancements
 

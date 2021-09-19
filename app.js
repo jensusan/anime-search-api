@@ -142,16 +142,6 @@ function handleGetQuote(event) {
     //localStorage.setItem(dataImage, data.image_url)
     }
     
-   
-   
-    // const $showItem = $('<p>');
-    // $showItem.text();
-    // $watchDiv.append($showItem);
-    // const $showImage = $('<img>');
-    // $showImage.attr('src', data.image_url);
-    // $showImage.attr('alt', data.title);
-    // $watchDiv.append($showImage);
-    
 
     
  
