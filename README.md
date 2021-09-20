@@ -23,4 +23,4 @@ A web application that lets you search for animes using an API, read random quot
 ## Future Enhancements
 
 * Top 10 list
-* Search for randomw anime
+* Search for randome anime
