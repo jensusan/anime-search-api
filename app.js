@@ -137,9 +137,7 @@ function handleGetQuote(event) {
 
     function setList(data) {
     let dataTitle = data.title;
-    //let dataImage = data.mal_id;
     localStorage.setItem(dataTitle, dataTitle);
-    //localStorage.setItem(dataImage, data.image_url)
     }
     
 
