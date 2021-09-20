@@ -70,11 +70,11 @@ function displayList() {
         $imgList.attr('id', data.title)
         $carSlider.append($imgList)
         imgArray.push($imgList)
-       
     }  
    
     //animate image carousel
     function startSlider() {
+        if(imgArray.length > 1) {
         interval = setInterval(() => {
         $carSlider.animate({'margin-left': '-=225px'}, 1000, () => {
             currentImg ++;
@@ -83,9 +83,12 @@ function displayList() {
                 $carSlider.animate({'margin-left': 0}, 3000);
             }
         })
-    }, 3000)
+    }, 3000) 
+}
     }
-     startSlider();
+     
+    startSlider(); 
+   
 
     //pause and restart carousel
     $('#pause').on('click', ()=> {
